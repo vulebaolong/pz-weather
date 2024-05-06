@@ -4,6 +4,7 @@ import { Provider as ProviderRedux } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { store } from "../../store/store";
+import { BrowserRouter } from "react-router-dom";
 
 export default function Provider({ children }: { children: ReactNode }) {
    const theme = useMemo(
@@ -22,21 +23,23 @@ export default function Provider({ children }: { children: ReactNode }) {
    );
    return (
       <ProviderRedux store={store}>
-         <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-            <ToastContainer
-               position="bottom-right"
-               autoClose={5000}
-               hideProgressBar
-               newestOnTop={false}
-               closeOnClick
-               rtl={false}
-               pauseOnFocusLoss
-               draggable={false}
-               pauseOnHover
-            />
-         </ThemeProvider>
+         <BrowserRouter>
+            <ThemeProvider theme={theme}>
+               <CssBaseline />
+               {children}
+               <ToastContainer
+                  position="bottom-right"
+                  autoClose={5000}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable={false}
+                  pauseOnHover
+               />
+            </ThemeProvider>
+         </BrowserRouter>
       </ProviderRedux>
    );
 }
